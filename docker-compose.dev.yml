@@ -99,8 +99,6 @@ services:
         condition: service_completed_successfully
       redis:
         condition: service_healthy
-      temporal-dev-route:
-        condition: service_completed_successfully
     command: ["sh", "-c", "npm run storage:init && exec npm run dev:next"]
 
   temporal-worker-dev:
