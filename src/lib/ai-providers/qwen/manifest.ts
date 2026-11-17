@@ -4,6 +4,7 @@ import {
   QWEN_API_CONFIG_MODELS,
   QWEN_CAPABILITY_CATALOG,
   QWEN_PLATFORM_MODELS,
+  QWEN_PRICING_CATALOG,
 } from './models'
 
 export const qwenProviderManifest = defineAiProviderManifest({
@@ -17,8 +18,9 @@ export const qwenProviderManifest = defineAiProviderManifest({
   platformCredentials: { envPrefix: 'PLATFORM_QWEN', requiresBaseUrl: true },
   catalogs: {
     capabilities: QWEN_CAPABILITY_CATALOG,
-    pricing: [],
+    pricing: QWEN_PRICING_CATALOG,
     apiConfigModels: QWEN_API_CONFIG_MODELS,
     platformModels: QWEN_PLATFORM_MODELS,
   },
+  mediaInputs: [{ modality: 'image', transports: { image: ['inline-data-url'] } }],
 })
