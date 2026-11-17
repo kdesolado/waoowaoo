@@ -4,6 +4,7 @@ import { falProviderManifest } from '@/lib/ai-providers/fal/manifest'
 import { googleProviderManifest } from '@/lib/ai-providers/google/manifest'
 import { openAiProviderManifest } from '@/lib/ai-providers/openai/manifest'
 import { openRouterProviderManifest } from '@/lib/ai-providers/openrouter/manifest'
+import { qwenProviderManifest } from '@/lib/ai-providers/qwen/manifest'
 import type { AiProviderManifest } from '@/lib/ai-providers/manifest'
 
 export const CORE_AI_PROVIDER_MANIFESTS = [
@@ -13,4 +14,5 @@ export const CORE_AI_PROVIDER_MANIFESTS = [
   googleProviderManifest,
   openAiProviderManifest,
   openRouterProviderManifest,
+  qwenProviderManifest,
 ] as const satisfies readonly AiProviderManifest[]

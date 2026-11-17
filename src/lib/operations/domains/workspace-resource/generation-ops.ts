@@ -1679,22 +1679,9 @@ export function createWorkspaceResourceGenerationOperations(): ProjectAgentOpera
         : await planNewMedia(ctx, 'create_audio', 'audio', value.request),
       commit: async (ctx, _value, plan) => await commitProductionPlan(ctx, 'create_audio', plan),
     }),
-    create_video: defineOperation({
-      ...mediaOperationBase({
-        operationId: 'create_video',
-        mediaType: 'video',
-        mediaKind: 'video',
-        schemaIds: WORKSPACE_RESOURCE_GENERATION_SCHEMA_IDS_BY_MEDIA.video,
-        defaultSchemaId: WORKSPACE_RESOURCE_SCHEMA.VIDEO_SEGMENT,
-      }),
-      inputSchema: videoMediaRequestSchema,
-      plan: async (ctx, value) => value.request.kind === 'retry'
-        ? await planRetry(ctx, 'create_video', value.request.resourceIds)
-        : value.request.kind === 'revise_failed'
-          ? await planReviseFailedVideo(ctx, value.request)
-          : await planNewMedia(ctx, 'create_video', 'video', value.request),
-      commit: async (ctx, _value, plan) => await commitProductionPlan(ctx, 'create_video', plan),
-    }),
+    // This distribution deliberately has no AI-video operation. Finished
+    // videos are rendered from approved Qwen stills by FFmpeg instead, so a
+    // prompt can never accidentally route to a chargeable video model.
     rerun_failed_production_items: defineOperation({
       id: 'rerun_failed_production_items',
       summary: 'Requote and rerun only exact failed/canceled production Resource IDs using their original frozen Task payloads.',

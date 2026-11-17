@@ -1,0 +1,21 @@
+[Unit]
+Description=Authenticated Qwen Image 2.1 Gateway
+After=network-online.target comfyui-qwen21.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=codex
+Group=codex
+EnvironmentFile=/etc/waoowaoo/qwen-gateway.env
+ExecStart=/usr/bin/python3 /opt/waoowaoo-qwen-gateway/server.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadOnlyPaths=/home/codex/AI/qwen-storyboard-infra/ubuntu/comfyui/qwen21-test-api.json
+
+[Install]
+WantedBy=multi-user.target
